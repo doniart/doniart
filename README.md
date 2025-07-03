@@ -1,54 +1,30 @@
-# Donia Liu Neekman - Art Portfolio
+# Visual Artist & Character Designer
 
-A modern, responsive art portfolio website showcasing the work of Donia Liu Neekman, featuring character design, visual development, and illustration.
+![Donia Liu Neekman](images/artwork/about/9C94E377-09B4-4B89-902E-B1B816746653.jpeg)
 
-## Features
+## Hire DoniArt
 
-- **Modern Design**: Clean, minimalist interface that lets the artwork shine
-- **Responsive Layout**: Works beautifully on all devices
-- **Portfolio Categories**: Filter works by Character Design, Visual Development, and Storyboards
-- **Lightbox Gallery**: Click any artwork for full-screen viewing
-- **Smooth Animations**: Professional transitions and effects
-- **Dark Mode Support**: Automatically adapts to system preferences
+Hi! I'm DoniArt, a visual artist passionate about bringing stories to life through art. I specialize in character design, visual development, and creating immersive worlds that captivate audiences.
 
-## Quick Start
+### Portfolio Highlights
 
-1. Run the local server:
-   ```bash
-   python3 serve.py
-   ```
+![Fantasy Mushroom Village](images/artwork/visdev/Donia_Neekman_Landscape_darker-1024x661.jpg)
 
-2. Open your browser to `http://localhost:8000`
+![Character Lineup](images/artwork/character-design/IMG_1977-1024x576.jpeg)
 
-## Project Structure
+![Storyboard Sample](images/artwork/storyboards/Storyboard_Donia_pg1-2.png)
 
-```
-DoniArt/
-├── index.html          # Main portfolio page
-├── script.js           # Interactive functionality
-├── serve.py           # Local development server
-├── artwork/           # Organized artwork assets
-│   ├── character-design/
-│   ├── visdev/
-│   ├── storyboards/
-│   └── about/
-└── Neekman_Donia_Resume_2024-3.pdf
-```
+### What I Do
 
-## Technologies Used
+- **Character Design** - Creating memorable characters with unique personalities
+- **Visual Development** - Building immersive worlds and environments
+- **Storyboarding** - Visual storytelling for animation and games
+- **Illustration** - Professional artwork for various media
 
-- **Tailwind CSS**: Utility-first CSS framework
-- **Alpine.js**: Lightweight JavaScript framework
-- **Modern CSS**: Custom animations and effects
-- **Responsive Design**: Mobile-first approach
+### Get In Touch
 
-## Portfolio Sections
+🎨 **Portfolio**: [doniart.com](https://doniart.com)  
+✉️ **Email**: donartyx@gmail.com  
+💼 **LinkedIn**: [linkedin.com/in/donia-liu-neekman](https://www.linkedin.com/in/donia-liu-neekman/)  
 
-1. **Character Design**: Fantasy characters with unique personalities
-2. **Visual Development**: Environment art and atmospheric studies
-3. **Storyboards**: Professional narrative sequences
-4. **About**: Artist information and background
-
----
-
-Built with passion for showcasing incredible artistic talent.
+Ready to bring your vision to life? Let's create something amazing together!

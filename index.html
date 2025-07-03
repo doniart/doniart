@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth scroll-pt-24">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoniArt - Visual Artist & Character Designer | Donia Liu Neekman</title>
+    <meta name="description" content="DoniArt showcases the portfolio of Donia Liu Neekman - Character Designer, Visual Development Artist, and Illustrator. Creating enchanting worlds and memorable characters.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="DoniArt - Visual Artist & Character Designer">
+    <meta property="og:description" content="Portfolio of Donia Liu Neekman showcasing character design, visual development, and illustration work.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/images/artwork/visdev/Donia_Neekman_Landscape_darker-1024x661.jpg">
+    <meta property="og:site_name" content="DoniArt">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png">
+    <link rel="manifest" href="/images/favicon/site.webmanifest">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'dance1': 'dance1 19s ease-in-out infinite',
+                        'dance2': 'dance2 23.75s ease-in-out infinite',
+                        'dance3': 'dance3 28.5s ease-in-out infinite',
+                    },
+                    aspectRatio: {
+                        '4/3': '4 / 3',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom styles -->
+    <style>
+        [x-cloak] { display: none !important; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Dancing gradient balls */
+        @keyframes dance1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(100px, -50px) scale(1.1); }
+            50% { transform: translate(-50px, -100px) scale(0.9); }
+            75% { transform: translate(-100px, 50px) scale(1.05); }
+        }
+        
+        @keyframes dance2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(-80px, 60px) scale(0.95); }
+            50% { transform: translate(120px, -30px) scale(1.1); }
+            75% { transform: translate(60px, 80px) scale(1); }
+        }
+        
+        @keyframes dance3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(70px, 70px) scale(1.05); }
+            50% { transform: translate(-100px, 40px) scale(0.95); }
+            75% { transform: translate(-30px, -80px) scale(1.1); }
+        }
+        
+        .gradient-ball {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.7;
+            animation-timing-function: ease-in-out;
+        }
+        
+        /* Theme toggle animation */
+        .theme-toggle-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .theme-toggle-btn svg {
+            transition: transform 0.5s ease;
+        }
+        
+        .theme-toggle-btn:hover svg {
+            transform: rotate(180deg);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            @apply bg-gray-100 dark:bg-gray-800;
+        }
+        ::-webkit-scrollbar-thumb {
+            @apply bg-gray-400 dark:bg-gray-600 rounded;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            @apply bg-gray-500 dark:bg-gray-500;
+        }
+        
+        /* Image grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+        }
+        @media (min-width: 1024px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Artwork hover */
+        .artwork-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .artwork-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .artwork-card img {
+            transition: transform 0.5s ease;
+        }
+        .artwork-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Email obfuscation */
+        .email-link::before {
+            content: attr(data-name);
+        }
+        .email-link::after {
+            content: "@" attr(data-domain);
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300" x-data="{
+    currentFilter: 'all',
+    lightbox: false,
+    currentArtwork: {},
+    darkMode: localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches),
+    artworks: [],
+    
+    async init() {
+        // Set dark mode class
+        this.$watch('darkMode', value => {
+            localStorage.setItem('darkMode', value);
+            if (value) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+        
+        // Initialize dark mode
+        if (this.darkMode) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        // Load images dynamically
+        await this.loadArtworks();
+    },
+    
+    async loadArtworks() {
+        // In a real implementation, this would fetch from a server endpoint
+        // For now, we'll define the structure but you can easily replace with dynamic loading
+        const categories = {
+            'character': 'Character Design',
+            'visdev': 'Visual Development',
+            'storyboard': 'Storyboards'
+        };
+        
+        // This is where you'd fetch dynamically from server
+        // For now, using static data that matches your file structure
+        this.artworks = [
+            // Character Design
+            {
+                src: '/images/artwork/character-design/IMG_1977-1024x576.jpeg',
+                title: 'Fantasy Character Lineup',
+                category: 'character',
+                featured: true
+            },
+            {
+                src: '/images/artwork/character-design/5F5FA69F-E264-4228-B9E9-213DAB9E81AE-768x1024.jpeg',
+                title: 'Character Sketches & Action Poses',
+                category: 'character'
+            },
+            {
+                src: '/images/artwork/character-design/IMG_1992-1024x576.jpeg',
+                title: 'Character Explorations',
+                category: 'character'
+            },
+            {
+                src: '/images/artwork/character-design/9A9BA93F-DBD3-4FAF-8F9C-53F30FB2AFA1-1024x576.jpeg',
+                title: 'Character Concepts',
+                category: 'character'
+            },
+            {
+                src: '/images/artwork/character-design/B63504F8-019C-470E-BF93-0B6AE45C8B92-1024x576.jpeg',
+                title: 'Character Development',
+                category: 'character'
+            },
+            
+            // Visual Development
+            {
+                src: '/images/artwork/visdev/Donia_Neekman_Landscape_darker-1024x661.jpg',
+                title: 'Fantasy Mushroom Village',
+                category: 'visdev',
+                featured: true
+            },
+            {
+                src: '/images/artwork/visdev/Donia_Neekman_Indoor_darker-1024x661.jpg',
+                title: 'Interior Environment Design',
+                category: 'visdev'
+            },
+            {
+                src: '/images/artwork/visdev/vampireRoomgrayscale-1024x576.jpg',
+                title: 'Vampire Room - Atmospheric Study',
+                category: 'visdev',
+                featured: true
+            },
+            {
+                src: '/images/artwork/visdev/vampireRoomlineart-1024x576.jpg',
+                title: 'Vampire Room - Line Art',
+                category: 'visdev'
+            },
+            {
+                src: '/images/artwork/visdev/Layoutcolour12-1024x576.jpg',
+                title: 'Color Layout Study',
+                category: 'visdev'
+            },
+            {
+                src: '/images/artwork/visdev/03AD320A-925D-483B-8654-065CED717813-1024x576.jpeg',
+                title: 'Environment Concept',
+                category: 'visdev'
+            },
+            {
+                src: '/images/artwork/visdev/907C1E98-2442-4785-A85C-3BA417C5C933-1024x576.jpeg',
+                title: 'Visual Development',
+                category: 'visdev'
+            },
+            {
+                src: '/images/artwork/visdev/AFE7B112-4638-431E-8128-C4C859092051-1024x1024.jpeg',
+                title: 'Concept Art',
+                category: 'visdev'
+            },
+            {
+                src: '/images/artwork/visdev/B7803D0C-CE20-4E86-9E73-700C121456B0-1024x576.png',
+                title: 'Environment Design',
+                category: 'visdev'
+            },
+            {
+                src: '/images/artwork/visdev/B969E7B1-10A1-42FC-98E2-AF37D6D8C73F-1024x768.jpeg',
+                title: 'Scene Development',
+                category: 'visdev'
+            },
+            {
+                src: '/images/artwork/visdev/BAD8C995-ED45-4C2C-80CB-A12E6F39817A-1024x576.png',
+                title: 'Visual Exploration',
+                category: 'visdev'
+            },
+            {
+                src: '/images/artwork/visdev/IMG_2617-1024x576.jpeg',
+                title: 'Environment Study',
+                category: 'visdev'
+            },
+            
+            // Storyboards
+            {
+                src: '/images/artwork/storyboards/Storyboard_Donia_pg1-2.png',
+                title: 'Introduce Myself - Page 1',
+                category: 'storyboard',
+                featured: true
+            },
+            {
+                src: '/images/artwork/storyboards/Storyboard_Donia_pg2-1.png',
+                title: 'Introduce Myself - Page 2',
+                category: 'storyboard'
+            },
+            {
+                src: '/images/artwork/storyboards/Storyboard_Donia_pg3-1.png',
+                title: 'Introduce Myself - Page 3',
+                category: 'storyboard'
+            },
+            {
+                src: '/images/artwork/storyboards/Storyboard_Donia_pg4-1.png',
+                title: 'Introduce Myself - Page 4',
+                category: 'storyboard'
+            }
+            // Removed the f546868a76faa9a4831cfacf04b7c53a.jpg as requested
+        ];
+    },
+    
+    get filteredArtworks() {
+        if (this.currentFilter === 'all') {
+            return this.artworks;
+        }
+        return this.artworks.filter(artwork => artwork.category === this.currentFilter);
+    },
+    
+    openLightbox(artwork) {
+        this.currentArtwork = artwork;
+        this.lightbox = true;
+        document.body.style.overflow = 'hidden';
+    },
+    
+    closeLightbox() {
+        this.lightbox = false;
+        document.body.style.overflow = '';
+    }
+}" x-init="init()">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-all duration-300" x-data="{ isOpen: false, scrolled: false }" 
+         @scroll.window="scrolled = (window.pageYOffset > 20)"
+         :class="{ 'py-2': scrolled, 'py-4': !scrolled }">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center space-x-3 group">
+                    <img src="/images/logo.png" alt="DoniArt" class="h-10 w-10 rounded-full group-hover:scale-110 transition-transform ring-2 ring-gray-500 bg-white">
+                    <span class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">DoniArt</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#portfolio" class="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors font-medium">Portfolio</a>
+                    <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors font-medium">About</a>
+                    <a href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors font-medium">Contact</a>
+                    
+                    <!-- Theme Toggle -->
+                    <button @click="darkMode = !darkMode" 
+                            class="theme-toggle-btn p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                        <svg x-show="!darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg x-show="darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <button @click="isOpen = !isOpen" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                              x-show="!isOpen" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                              x-show="isOpen" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div x-show="isOpen" x-transition class="md:hidden mt-4 pb-4">
+                <a href="#portfolio" @click="isOpen = false" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-purple-600">Portfolio</a>
+                <a href="#about" @click="isOpen = false" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-purple-600">About</a>
+                <a href="#contact" @click="isOpen = false" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-purple-600">Contact</a>
+                <button @click="darkMode = !darkMode" class="mt-2 flex items-center gap-2 py-2 text-gray-700 dark:text-gray-300">
+                    <span x-text="darkMode ? 'Light Mode' : 'Dark Mode'"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Animated Orbs -->
+    <section id="home" class="relative pt-60 pb-32 px-6 overflow-hidden">
+        <!-- Animated gradient balls -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="gradient-ball w-48 h-48 md:w-96 md:h-96 bg-purple-400 dark:bg-purple-600 -top-24 -left-24 md:-top-48 md:-left-48 animate-dance1"></div>
+            <div class="gradient-ball w-40 h-40 md:w-80 md:h-80 bg-pink-400 dark:bg-pink-600 -bottom-16 -right-16 md:-bottom-32 md:-right-32 animate-dance2"></div>
+            <div class="gradient-ball w-36 h-36 md:w-72 md:h-72 bg-blue-400 dark:bg-blue-600 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-dance3"></div>
+        </div>
+        
+        <div class="container mx-auto max-w-6xl relative z-10 w-full">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-4 animate-fade-in">
+                    <span class="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Donia Liu Neekman</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 animate-slide-up">
+                    Visual Artist • Character Designer • Storyteller
+                </p>
+                <div class="flex justify-center gap-4 animate-slide-up" style="animation-delay: 0.2s;">
+                    <a href="#portfolio" class="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full hover:shadow-lg hover:scale-105 transition-all">
+                        View My Work
+                    </a>
+                    <a href="#contact" class="px-8 py-3 border-2 border-purple-600 dark:border-purple-400 text-purple-600 dark:text-purple-400 rounded-full hover:bg-purple-600 dark:hover:bg-purple-400 hover:text-white dark:hover:text-gray-900 transition-all">
+                        Hire Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-16 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">Portfolio</h2>
+            
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button @click="currentFilter = 'all'" 
+                        :class="currentFilter === 'all' ? 'bg-purple-600 text-white' : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300'"
+                        class="px-6 py-2 rounded-full font-medium transition-all hover:scale-105">
+                    All Work
+                </button>
+                <button @click="currentFilter = 'character'" 
+                        :class="currentFilter === 'character' ? 'bg-purple-600 text-white' : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300'"
+                        class="px-6 py-2 rounded-full font-medium transition-all hover:scale-105">
+                    Character Design
+                </button>
+                <button @click="currentFilter = 'visdev'" 
+                        :class="currentFilter === 'visdev' ? 'bg-purple-600 text-white' : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300'"
+                        class="px-6 py-2 rounded-full font-medium transition-all hover:scale-105">
+                    Visual Development
+                </button>
+                <button @click="currentFilter = 'storyboard'" 
+                        :class="currentFilter === 'storyboard' ? 'bg-purple-600 text-white' : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300'"
+                        class="px-6 py-2 rounded-full font-medium transition-all hover:scale-105">
+                    Storyboards
+                </button>
+            </div>
+            
+            <!-- Portfolio Grid -->
+            <div class="portfolio-grid">
+                <template x-for="(artwork, index) in filteredArtworks" :key="index">
+                    <div class="artwork-card bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden h-full"
+                         @click="openLightbox(artwork)">
+                        <div class="relative pb-[75%] bg-gray-100 dark:bg-gray-800">
+                            <img :src="artwork.src" 
+                                 :alt="artwork.title"
+                                 class="absolute inset-0 w-full h-full object-cover"
+                                 loading="lazy">
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <h2 class="text-4xl font-bold text-center mb-12">About Me</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Image Card -->
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]">
+                    <img src="/images/artwork/about/9C94E377-09B4-4B89-902E-B1B816746653.jpeg" 
+                         alt="Donia Liu Neekman" 
+                         class="rounded-lg w-full h-full object-cover">
+                </div>
+                
+                <!-- Text Card -->
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-lg p-8 flex flex-col justify-center transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]">
+                    <div class="space-y-4 text-gray-700 dark:text-gray-300">
+                        <p class="text-lg">
+                            Hi! I'm Donia, a visual artist passionate about bringing stories to life through art. 
+                            I specialize in character design, visual development, and creating immersive worlds that captivate audiences.
+                        </p>
+                        <p class="text-lg">
+                            My work blends whimsical fantasy with emotional storytelling, creating characters and environments 
+                            that resonate with viewers. From concept to final art, I love every step of the creative process.
+                        </p>
+                        <p class="text-lg">
+                            I'm currently seeking opportunities to collaborate with studios and creators who share my passion 
+                            for visual storytelling. Let's create something amazing together!
+                        </p>
+                        <div class="pt-6">
+                            <a href="#contact" class="inline-block px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full hover:shadow-lg hover:scale-105 transition-all">
+                                Work With Me
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
+        <div class="container mx-auto px-6 max-w-2xl text-center">
+            <h2 class="text-4xl font-bold mb-8">Let's Create Together</h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+                Ready to bring your vision to life? I'd love to hear about your project!
+            </p>
+            
+            <div class="space-y-4">
+                <a href="#" 
+                   onclick="event.preventDefault(); window.location.href='mailto:' + 'donartyx' + '@' + 'gmail.com';"
+                   class="inline-flex items-center justify-center gap-3 text-lg text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <span class="email-link" data-name="donartyx" data-domain="gmail.com"></span>
+                </a>
+                
+                <div class="flex justify-center gap-4 pt-6">
+                    <a href="https://www.linkedin.com/in/donia-liu-neekman/" class="p-3 bg-white dark:bg-gray-700 rounded-full shadow transition-all duration-300 hover:shadow-xl hover:scale-110">
+                        <svg class="w-6 h-6 text-gray-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com/realDoniArt" class="p-3 bg-white dark:bg-gray-700 rounded-full shadow transition-all duration-300 hover:shadow-xl hover:scale-110">
+                        <svg class="w-6 h-6 text-gray-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com/realDoniArt" class="p-3 bg-white dark:bg-gray-700 rounded-full shadow transition-all duration-300 hover:shadow-xl hover:scale-110">
+                        <svg class="w-6 h-6 text-gray-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Resume Download - Moved to bottom -->
+                <div class="pt-8 border-t border-gray-300 dark:border-gray-600 mt-8">
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Want to see more of my qualifications?</p>
+                    <a href="/DoniArt-CV.pdf" download 
+                       class="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-gray-700 border-2 border-purple-600 dark:border-purple-400 text-purple-600 dark:text-purple-400 rounded-full hover:bg-purple-600 dark:hover:bg-purple-400 hover:text-white dark:hover:text-gray-900 transition-all">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Download Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 transition-colors duration-300">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-600 dark:text-gray-400">© 2022-<span id="current-year"></span> DoniArt. All artwork © Donia Liu Neekman</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div x-show="lightbox" x-cloak
+         @click="closeLightbox()"
+         class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100">
+        <div class="relative max-w-6xl max-h-[90vh]" @click.stop>
+            <img :src="currentArtwork.src" 
+                 :alt="currentArtwork.title"
+                 class="max-w-full max-h-[90vh] object-contain">
+            <button @click="closeLightbox()" 
+                    class="absolute top-4 right-4 text-white bg-black/50 rounded-full p-2 hover:bg-black/70">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Smooth scrolling -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const navHeight = document.querySelector('nav').offsetHeight;
+                        // Find the h2 title within the section
+                        const titleElement = targetElement.querySelector('h2');
+                        const targetTop = titleElement ? titleElement.offsetTop : targetElement.offsetTop;
+                        const targetPosition = targetTop - navHeight - 10;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+        
+        // Keyboard support for lightbox
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                window.dispatchEvent(new CustomEvent('close-lightbox'));
+            }
+        });
+    </script>
+</body>
+</html>

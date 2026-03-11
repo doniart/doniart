@@ -4,7 +4,7 @@
 
 ## Hire DoniArt
 
-Hi! I'm DoniArt, a visual artist passionate about bringing stories to life through art. I specialize in character design, visual development, and creating immersive worlds that captivate audiences.
+Hi! I'm Donia, a visual artist passionate about bringing stories to life through art. I specialize in character design, visual development, and creating immersive worlds that captivate audiences.
 
 ### Portfolio Highlights
 
@@ -24,7 +24,7 @@ Hi! I'm DoniArt, a visual artist passionate about bringing stories to life throu
 ### Get In Touch
 
 🎨 **Portfolio**: [doniart.com](https://doniart.com)  
-✉️ **Email**: donartyx@gmail.com  
+✉️ **Email**: donia.neekman@gmail.com  
 💼 **LinkedIn**: [linkedin.com/in/donia-liu-neekman](https://www.linkedin.com/in/donia-liu-neekman/)  
 
 Ready to bring your vision to life? Let's create something amazing together!
